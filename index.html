@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#351627">
+  <title>予你的一封邀请函</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="glow glow-one"></span><span class="glow glow-two"></span>
+    <div id="petals" class="petals"></div>
+  </div>
+
+  <main class="scene">
+    <section class="panel active" data-step="envelope">
+      <p class="eyebrow">A LETTER FOR YOU</p>
+      <button class="envelope" data-action="open" aria-label="打开邀请函">
+        <span class="envelope-back"></span>
+        <span class="letter"><i>致 特别的你</i><b>♥</b></span>
+        <span class="envelope-front"></span>
+        <span class="seal">Y</span>
+      </button>
+      <p class="hint">轻触信封，查收一份浪漫</p>
+    </section>
+
+    <section class="panel invitation" data-step="invite" aria-hidden="true">
+      <p class="eyebrow">A LITTLE DATE</p>
+      <div class="ornament">✦</div>
+      <h1>想邀请你，<br>和我共赴一场心动</h1>
+      <p class="copy">也许是晚风、灯火与一顿喜欢的晚餐。<br>重要的不是去哪里，而是身边的人恰好是你。</p>
+      <div class="actions">
+        <button class="btn primary accept-btn" data-action="accept">我愿意 <span>♥</span></button>
+        <button class="btn ghost decline-btn" data-action="decline">让我想想</button>
+      </div>
+      <p id="declineNote" class="decline-note" aria-live="polite"></p>
+    </section>
+
+    <section class="panel invitation surprise" data-step="surprise" aria-hidden="true">
+      <p class="eyebrow">WAIT, REALLY?</p>
+      <div class="surprise-heart" aria-hidden="true"><span>♥</span><i>✦</i><i>✦</i></div>
+      <h2>等一下，<br>你真的点了“我愿意”？</h2>
+      <p class="copy surprise-copy">我都已经准备好被你点“不要”了。<br><small>现在却开心得只剩下心跳声了。</small></p>
+      <button class="btn primary surprise-confirm" data-action="surprise-confirm">真的愿意 <span>♥</span></button>
+      <p class="surprise-note">那我们认真约定一次吧</p>
+    </section>
+
+    <section class="panel invitation" data-step="schedule" aria-hidden="true">
+      <p class="eyebrow">SAVE THE DATE</p>
+      <div class="step-mark"><span>01</span><i></i><span>03</span></div>
+      <h2>把这一天留给我们</h2>
+      <p class="copy">选一个你喜欢的日子和时间，剩下的浪漫交给我。</p>
+      <form id="scheduleForm" class="form" novalidate>
+        <label class="schedule-field date-field"><span>日期</span><input id="date" type="date" required><em class="field-nudge">小笨蛋，点这里啦 👆</em></label>
+        <label class="schedule-field time-field"><span>时间</span><select id="time" required><option value="">请选择时间</option></select><em class="field-nudge">小笨蛋，点这里啦 👆</em></label>
+        <button class="btn primary wide">继续挑选晚餐 <span>→</span></button>
+      </form>
+    </section>
+
+    <section class="panel dining" data-step="food" aria-hidden="true">
+      <div class="dining-card">
+        <p class="eyebrow">DINNER FOR TWO</p>
+        <h2>想吃点什么？</h2>
+        <p class="food-subtitle">选一个喜欢的分类，也可以告诉我你的特别想法</p>
+        <div id="foodGrid" class="food-grid">
+          <button data-food="粤菜"><b>🦐</b><span>粤菜</span></button>
+          <button data-food="川湘菜"><b>🌶️</b><span>川湘菜</span></button>
+          <button data-food="日韩料理"><b>🍣</b><span>日韩料理</span></button>
+          <button data-food="火锅"><b>🍲</b><span>火锅</span></button>
+          <button data-food="烧烤烤肉"><b>🍖</b><span>烧烤烤肉</span></button>
+          <button data-food="甜品饮品"><b>🍰</b><span>甜品饮品</span></button>
+        </div>
+        <label class="custom-choice">
+          <span class="sr-only">填写其他想吃的美食</span>
+          <input id="customFood" type="text" maxlength="24" placeholder="其他：写下你想吃的美食 ✎">
+        </label>
+        <button id="confirmFood" class="food-confirm" type="button" disabled>请选择或填写</button>
+      </div>
+    </section>
+
+    <section class="panel invitation finale" data-step="final" aria-hidden="true">
+      <div id="sparkles" class="sparkles" aria-hidden="true"></div>
+      <p class="eyebrow">IT'S A DATE</p>
+      <button id="secretHeart" class="heart-beat" type="button" aria-label="心动彩蛋">♥</button>
+      <h2>约定，从这一刻开始</h2>
+      <p class="copy">我会带着期待，准时奔向你。</p>
+      <div class="ticket">
+        <div><small>DATE</small><strong id="finalDate">—</strong></div>
+        <div><small>TIME</small><strong id="finalTime">—</strong></div>
+        <div><small>DINNER</small><strong id="finalFood">—</strong></div>
+      </div>
+      <div class="countdown" aria-live="polite">
+        <p>距离我们的见面还有</p>
+        <div id="countdownNumbers">
+          <span><strong id="countDays">00</strong><small>天</small></span><i>:</i>
+          <span><strong id="countHours">00</strong><small>时</small></span><i>:</i>
+          <span><strong id="countMinutes">00</strong><small>分</small></span><i>:</i>
+          <span><strong id="countSeconds">00</strong><small>秒</small></span>
+        </div>
+        <p id="countdownReached" class="countdown-reached" hidden>就是现在，准备见面吧 ♥</p>
+      </div>
+      <p class="signature">Yours, with all my heart.</p>
+      <button class="text-button" data-action="restart">重新打开邀请函</button>
+      <div id="secretMessage" class="secret-message" role="status" aria-hidden="true">
+        <div class="secret-label">彩蛋</div>
+        <div class="secret-seal" aria-hidden="true">♥</div>
+        <span>✦ SECRET MESSAGE ✦</span>
+        <strong>其实，比约会更期待的是见到你。</strong>
+        <small>这句话，只给发现彩蛋的你</small>
+        <button class="secret-close" type="button" data-action="close-secret">收好这句话</button>
+        <i class="secret-star star-one" aria-hidden="true">✦</i>
+        <i class="secret-star star-two" aria-hidden="true">✦</i>
+        <i class="secret-star star-three" aria-hidden="true">·</i>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
